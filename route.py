@@ -11,8 +11,8 @@ class MainHandler(tornado.web.RequestHandler):
 
 
 handlers = [
-  (r'/public/(.*)', web.StaticFileHandler, {'path': public_root}),
-  (r'/', MainHandler)
+  (r'/', MainHandler),
+  (r'/(.*)', web.StaticFileHandler, {'path': public_root}),
 ]
 
 settings = dict(
