@@ -1,0 +1,15 @@
+#myCode{
+   width: 50%;
+   height: 600px;
+   resize: none;
+   margin: 0% 0% -100px -50%;
+
+}
+
+textarea{
+  resize: none;
+  background-color: #7a8089
+}
+#editor{
+    text-align: center;
+}
