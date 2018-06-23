@@ -12,28 +12,28 @@ class DBManager:
         with open(self.file_path, 'w') as f:
             json.dump(self.data, f, indent=2, sort_keys=True)
 
-    def add_new_session(self, index, state):
-        if self.check_existing_key(index):
-            print('Session with id ' + str(index) + ' already exists while trying to create a new session')
+    def add_new_session(self, username, state):
+        if self.check_existing_key(username):
+            print('Session with id ' + str(username) + ' already exists while trying to create a new session')
         else:
-            self.data['sessions'][str(index)] = state
+            self.data['sessions'][str(username)] = state
             self.print_data_to_file()
 
-    def get_session(self, index):
-        if self.check_existing_key(index):
-            return self.data['sessions'][str(index)]
+    def get_session(self, username):
+        if self.check_existing_key(username):
+            return self.data['sessions'][str(username)]
         else:
             return {}
 
-    def remove_session(self, index):
-        del self.data['sessions'][str(index)]
+    def remove_session(self, username):
+        del self.data['sessions'][str(username)]
         self.print_data_to_file()
 
     def print_all_db(self):
         pprint(self.data)
 
-    def check_existing_key(self, index):
-        if index in self.data['sessions'].keys():
+    def check_existing_key(self, username):
+        if username in self.data['sessions'].keys():
             return True
         else:
             return False

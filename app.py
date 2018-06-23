@@ -8,7 +8,7 @@ public_root = os.path.join(os.path.dirname(__file__), 'public')
 handlers = [
     (r'/', MainHandler),
     (r'/login', LoginHandler),
-    (r'/(.*)', tornado.web.StaticFileHandler, {'path': public_root}),
+    (r'/(.*)', tornado.web.StaticFileHandler, {'path': public_root})
 ]
 
 settings = dict(
