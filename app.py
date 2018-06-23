@@ -24,7 +24,7 @@ settings = dict(
 application = web.Application(handlers, **settings)
 
 if __name__ == "__main__":
-    port = int(8888)
+    port = 8888
     application.listen(port)
     str(port)
     print("Server running on port " + str(port))
