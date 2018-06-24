@@ -1,0 +1,13 @@
+{
+  "sessions": {
+    "igor": {
+      "state": 1
+    },
+    "mega": {
+      "state": 2
+    },
+    "pedro": {
+      "state": 3
+    }
+  }
+}
