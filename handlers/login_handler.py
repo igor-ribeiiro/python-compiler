@@ -7,7 +7,6 @@ class LoginHandler(tornado.web.RequestHandler):
         self.db_manager = DBManager()
 
     def get(self):
-
         form = """<form method="post">
         <input type="text" name="username"/>
         <input type="text" name="designation"/>
@@ -19,4 +18,5 @@ class LoginHandler(tornado.web.RequestHandler):
         username = self.get_argument('username')
         designation = self.get_argument('designation')
         self.write("Wow " + username + " you're a " + designation)
-        return self.db_manager.get_session(username)
+        print(self.db_manager.get_session(username))
+        # return self.db_manager.get_session(username)
