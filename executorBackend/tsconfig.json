@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "strict": true,
+    "sourceMap": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "outDir": "dist",
+    "alwaysStrict": true,
+    "lib": ["es2016", "dom", "es2015", "es2015.promise", "es5"]
+  },
+  "include": ["src/**/*.ts", "typings/@types/**/*.ts"],
+  "exclude": ["dist", "node_modules"]
+}
