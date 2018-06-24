@@ -1,10 +1,11 @@
+import os
 import json
 from pprint import pprint
 
 
 class DBManager:
     def __init__(self):
-        self.file_path = 'db.json'
+        self.file_path = os.path.join(os.path.dirname(__file__), 'db.json')/
         with open(self.file_path, 'r') as f:
             self.data = json.load(f)
 
