@@ -5,8 +5,16 @@ function getStatusOfCode() {
 
     httpPostAsync("/status", params, function(response) {
         console.log(response);
-        const outputText = response.output;
-        printOutput(outputText);
+        if(response.status !== 'ok') {
+            printStatus(response.status);
+            setTimeout(function() {
+                getStatusOfCode();
+            }, 1000);
+        }
+        else {
+            printStatus(response.status);
+            printOutput(response.output);
+        }
     })
 }
 
@@ -17,10 +25,10 @@ function requestExecutionOfCode() {
     const params = {"username": username, "code": code};
     console.log("Requested execution of code with username = " + username + " and code = " + code);
 
-    httpPostAsync("/code", params, function (response) {
+    httpPostAsync("/code", params, function(response) {
         console.log(response);
+        getStatusOfCode()
     })
-
 }
 
 function httpPostAsync(theUrl, params, callback) {

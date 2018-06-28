@@ -22,7 +22,7 @@ class CodeHandler(tornado.web.RequestHandler):
         self.finish()
 
     def run_code(self, id, username):
-        status = {"Status": "Running", "output": "EMPTY"}
+        status = {"status": "Running", "output": "EMPTY"}
         return status
 
     def update_db_and_response(self, id, state):

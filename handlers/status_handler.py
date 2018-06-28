@@ -20,7 +20,7 @@ class StatusHandler(tornado.web.RequestHandler):
         self.finish()
 
     def get_status_from_server(self, id):
-        return {"Status": "ok", "output": "This is the output from the server"}
+        return {"status": "ok", "output": "This is the output from the server"}
 
     def update_db_and_response(self, id, state):
         self.db_manager.add_new_session(id, state)

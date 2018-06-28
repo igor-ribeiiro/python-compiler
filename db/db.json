@@ -4,17 +4,25 @@
       "Status": "Running",
       "output": "EMPTY"
     },
+    "AAA": {
+      "output": "This is the output from the server",
+      "status": "ok"
+    },
     "AAAAA": {
       "Status": "Running",
       "output": "EMPTY"
     },
-    "aaa": {
+    "aa": {
       "Status": "ok",
       "output": "This is the output from the server"
     },
+    "aaa": {
+      "output": "This is the output from the server",
+      "status": "ok"
+    },
     "aaaa": {
-      "Status": "ok",
-      "output": "This is the output from the server"
+      "output": "This is the output from the server",
+      "status": "ok"
     },
     "aaaaa": {
       "Status": "ok",
