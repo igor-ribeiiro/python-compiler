@@ -92,11 +92,13 @@
         setTimeout(() => this.fetchOutput(), 1000);
       },
       async fetchOutput() {
-        const body = await (await fetch(`/status?username=${this.sessionId}`, {
+        const body = await (await fetch("/status", {
+          method: "POST",
           headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
           },
+          body: JSON.stringify({ "username": this.sessionId })
         })).json();
 
         this.output = body.output;
