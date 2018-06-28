@@ -1,7 +1,7 @@
 <template>
   <modal name="tutorial" adaptive>
     <div class="content">
-      <h4>PyBin: Remotely executes your Python code</h4>
+      <h5>PyBin: Remotely executes your Python code</h5>
       <p>How to use PyBin:</p>
       <ul>
         <li>
