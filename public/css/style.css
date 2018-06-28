@@ -1,0 +1,47 @@
+body {
+}
+
+#pythonMainIcon {
+    width: 40px;
+    height: 40px;
+    display:inline-block;
+    margin-bottom: 17px;
+}
+
+#textAreas {
+    margin-top: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+textarea {
+    width: 80%;
+    height: 400px;
+    overflow-x: auto;
+    overflow-y: auto;
+    font-family: Consolas, "Times New Roman", Times, serif;
+}
+
+
+
+/*#myCode{*/
+    /*width: 50%;*/
+    /*height: 600px;*/
+    /*resize: none;*/
+    /*margin: 0% 0% -100px -50%;*/
+
+/*}*/
+/*#output_text{*/
+    /*width: 50%;*/
+    /*height: 600px;*/
+    /*resize: none;*/
+    /*margin: 0% 0% -100px -50%;*/
+/*}*/
+
+/*textarea{*/
+    /*resize: none;*/
+    /*background-color: #7a8089*/
+/*}*/
+/*#editor{*/
+    /*text-align: center;*/
+/*}*/

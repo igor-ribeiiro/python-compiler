@@ -1,0 +1,17 @@
+{
+  "extends": "tslint:recommended",
+  "linterOptions": {
+    "exclude": ["./**/*.d.ts"]
+  },
+  "rules": {
+    "semicolon": true,
+    "indent": [true, "spaces", 2],
+    "prefer-while": true,
+    "interface-name": false,
+    "curly": [true, "as-needed"],
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "max-line-length": [true, 80],
+    "no-consecutive-blank-lines": false,
+    "trailing-comma": [true, { "multiline": { "functions": "never" } }]
+  }
+}

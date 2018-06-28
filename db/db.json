@@ -1,0 +1,54 @@
+{
+  "sessions": {
+    "": {
+      "output": "This is the output from the server",
+      "status": "ok"
+    },
+    "AAA": {
+      "output": "This is the output from the server",
+      "status": "ok"
+    },
+    "AAAAA": {
+      "Status": "Running",
+      "output": "EMPTY"
+    },
+    "a": {
+      "output": "This is the output from the server",
+      "status": "ok"
+    },
+    "aa": {
+      "output": "This is the output from the server",
+      "status": "ok"
+    },
+    "aaa": {
+      "output": "This is the output from the server",
+      "status": "ok"
+    },
+    "aaaa": {
+      "output": "This is the output from the server",
+      "status": "ok"
+    },
+    "aaaaa": {
+      "output": "This is the output from the server",
+      "status": "ok"
+    },
+    "aaaaaaa": {
+      "output": "This is the output from the server",
+      "status": "ok"
+    },
+    "igor": {
+      "Status": "ok",
+      "output": "This is the output from the server"
+    },
+    "mega": {
+      "state": 2
+    },
+    "pedro": {
+      "state": 3
+    },
+    "vfd": {
+      "Status": "Running",
+      "output": "EMPTY"
+    }
+  }
+}
