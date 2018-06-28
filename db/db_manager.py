@@ -16,9 +16,8 @@ class DBManager:
     def add_new_session(self, username, state):
         if self.check_existing_key(username):
             print('Session with id ' + str(username) + ' already exists while trying to create a new session')
-        else:
-            self.data['sessions'][str(username)] = state
-            self.print_data_to_file()
+        self.data['sessions'][str(username)] = state
+        self.print_data_to_file()
 
     def get_session(self, username):
         if self.check_existing_key(username):

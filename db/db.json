@@ -1,7 +1,8 @@
 {
   "sessions": {
     "igor": {
-      "state": 1
+      "Status": "ok",
+      "output": "This is the output from the server"
     },
     "mega": {
       "state": 2

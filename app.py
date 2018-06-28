@@ -5,7 +5,7 @@ import tornado.ioloop
 import tornado.options
 import tornado.web
 from handlers.main_handler import MainHandler
-from handlers.login_handler import LoginHandler
+from handlers.code_handler import CodeHandler
 
 # import and define tornado-y things
 from tornado.options import define
@@ -19,7 +19,7 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             (r'/', MainHandler),
-            (r'/login', LoginHandler),
+            (r'/code', CodeHandler),
             (r'/(.*)', tornado.web.StaticFileHandler, {'path': public_root})
         ]
         settings = dict(
