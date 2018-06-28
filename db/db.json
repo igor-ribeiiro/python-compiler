@@ -1,5 +1,13 @@
 {
   "sessions": {
+    "aaa": {
+      "Status": "ok",
+      "output": "This is the output from the server"
+    },
+    "aaaa": {
+      "Status": "Running",
+      "output": "EMPTY"
+    },
     "igor": {
       "Status": "ok",
       "output": "This is the output from the server"
@@ -9,6 +17,10 @@
     },
     "pedro": {
       "state": 3
+    },
+    "vfd": {
+      "Status": "Running",
+      "output": "EMPTY"
     }
   }
 }

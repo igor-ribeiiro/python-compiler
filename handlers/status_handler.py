@@ -3,27 +3,24 @@ from db.db_manager import DBManager
 import json
 
 
-class CodeHandler(tornado.web.RequestHandler):
+class StatusHandler(tornado.web.RequestHandler):
     def initialize(self):
         self.db_manager = DBManager()
 
     @tornado.web.asynchronous
     def post(self):
         data = tornado.escape.json_decode(self.request.body)
-
         username = data['username']
-        code = data['code']
 
-        response = self.run_code(code, username)
+        response = self.get_status_from_server(username)
 
         self.db_manager.add_new_session(username, response)
 
         self.update_db_and_response(username, response)
         self.finish()
 
-    def run_code(self, id, username):
-        status = {"Status": "Running", "output": "EMPTY"}
-        return status
+    def get_status_from_server(self, id):
+        return {"Status": "ok", "output": "This is the output from the server"}
 
     def update_db_and_response(self, id, state):
         self.db_manager.add_new_session(id, state)

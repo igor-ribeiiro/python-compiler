@@ -6,6 +6,7 @@ import tornado.options
 import tornado.web
 from handlers.main_handler import MainHandler
 from handlers.code_handler import CodeHandler
+from handlers.status_handler import StatusHandler
 
 # import and define tornado-y things
 from tornado.options import define
@@ -20,6 +21,7 @@ class Application(tornado.web.Application):
         handlers = [
             (r'/', MainHandler),
             (r'/code', CodeHandler),
+            (r'/status', StatusHandler),
             (r'/(.*)', tornado.web.StaticFileHandler, {'path': public_root})
         ]
         settings = dict(
