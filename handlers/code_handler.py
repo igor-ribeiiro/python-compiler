@@ -1,4 +1,9 @@
 import tornado.web
+import tornado.httpclient
+import tornado.escape
+import tornado.gen
+
+import requests
 from db.db_manager import DBManager
 import json
 
@@ -7,7 +12,6 @@ class CodeHandler(tornado.web.RequestHandler):
     def initialize(self):
         self.db_manager = DBManager()
 
-    @tornado.web.asynchronous
     def post(self):
         data = tornado.escape.json_decode(self.request.body)
 
@@ -21,9 +25,11 @@ class CodeHandler(tornado.web.RequestHandler):
         self.update_db_and_response(username, response)
         self.finish()
 
-    def run_code(self, id, username):
-        status = {"status": "Running", "output": "EMPTY"}
-        return status
+    def run_code(self, code, username):
+        requests.post("http://localhost:4040/api/execute", json={
+            "code": code, "id": username
+            })
+        return { "status": "ok", "output": "" }
 
     def update_db_and_response(self, id, state):
         self.db_manager.add_new_session(id, state)

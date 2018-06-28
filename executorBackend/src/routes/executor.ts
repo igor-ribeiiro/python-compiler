@@ -68,7 +68,7 @@ export default class ExecutorRouter {
     if (typeof id !== "string")
       return res.status(HttpStatus.BAD_REQUEST).send();
 
-    const status = this.getExecutor(id).code;
+    const status = this.getExecutor(id).status;
 
     return res.send(status);
   }

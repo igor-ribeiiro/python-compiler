@@ -1,13 +1,15 @@
 import tornado.web
+import tornado.httpclient
+import tornado.escape
 from db.db_manager import DBManager
 import json
+import requests
 
 
 class StatusHandler(tornado.web.RequestHandler):
     def initialize(self):
         self.db_manager = DBManager()
 
-    @tornado.web.asynchronous
     def post(self):
         data = tornado.escape.json_decode(self.request.body)
         username = data['username']
@@ -20,7 +22,15 @@ class StatusHandler(tornado.web.RequestHandler):
         self.finish()
 
     def get_status_from_server(self, id):
-        return {"status": "ok", "output": "This is the output from the server"}
+        stdout_response = requests.get(
+                f"http://localhost:4040/api/stdout?id={id}")
+        status_response = requests.get(
+                f"http://localhost:4040/api/status?id={id}")
+        print(status_response)
+        response = { "status": str(status_response.text),
+                     "output": str(stdout_response.text)}
+        print(response)
+        return response
 
     def update_db_and_response(self, id, state):
         self.db_manager.add_new_session(id, state)

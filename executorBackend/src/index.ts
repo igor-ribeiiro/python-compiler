@@ -16,6 +16,6 @@ server
   .use("/api", execRouter.router);
 
 
-const PORT = 8080;
+const PORT = 4040;
 server.listen(PORT, () =>
   console.log(`Listening on port ${PORT}...`));
