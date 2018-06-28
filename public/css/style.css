@@ -1,6 +1,27 @@
 body {
-    padding-left: 50px;
 }
+
+#pythonMainIcon {
+    width: 40px;
+    height: 40px;
+    display:inline-block;
+    margin-bottom: 17px;
+}
+
+#textAreas {
+    margin-top: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+textarea {
+    width: 80%;
+    height: 400px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+
 
 /*#myCode{*/
     /*width: 50%;*/
