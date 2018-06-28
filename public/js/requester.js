@@ -22,9 +22,8 @@ function getStatusOfCode() {
 }
 
 //Makes a request to execute the code
-function requestExecutionOfCode() {
+function requestExecutionOfCode(code) {
     canBeExecutedAgain = false;
-    const code = document.getElementById("myCode").value;
     const username = document.getElementById("username").value;
     const params = {"username": username, "code": code};
     console.log("Requested execution of code with username = " + username + " and code = " + code);
@@ -35,6 +34,11 @@ function requestExecutionOfCode() {
             getStatusOfCode()
         }, waitTime*1.1);
     })
+}
+
+function requestExecutionOfCodeWithTextArea() {
+    const code = document.getElementById("myCode").value;
+    requestExecutionOfCode(code);
 }
 
 function httpPostAsync(theUrl, params, callback) {

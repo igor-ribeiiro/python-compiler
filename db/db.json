@@ -32,6 +32,10 @@
       "output": "This is the output from the server",
       "status": "ok"
     },
+    "aaaaaaa": {
+      "output": "This is the output from the server",
+      "status": "ok"
+    },
     "igor": {
       "Status": "ok",
       "output": "This is the output from the server"
