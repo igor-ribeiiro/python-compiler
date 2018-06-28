@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <title>
+        Python Compiler
+    </title>
+    <link rel="stylesheet" type ="text/css" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="img/python_icon.ico"/>
     <nav>
       <div id = "identification">
         <h6>{{identification}}</h6>

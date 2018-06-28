@@ -2,10 +2,11 @@
   <div id="editor">
     <div id="container">
         <div id= "scriptName">
+            
+            <input v-model="nameText" is="textarea" id = "nameArea" readonly = true/>
             <b-button id = "buttonChangeName" :size = "'sm'" :variant= "'primary'">
                 change
             </b-button>
-            <input v-model="nameText" is="textarea" id = "nameArea" readonly = true/>
         </div>
       <div id ="editor">
         <b-button id = "buttonSave" :size = "'sm'" :variant= "'primary'">
@@ -14,7 +15,7 @@
         <b-button id = "buttonRun" :size = "'sm'" :variant= "'primary'">
                 run
         </b-button>
-        <editor id = "aceEditor" v-model="code" @init="editorInit" lang="python" theme="chrome" width="1000" height="400" fontSize = "50"></editor>
+        <editor id = "aceEditor" v-model="code" @init="editorInit" lang="python" theme="chrome" width="500" height="200" :options="options"></editor>
       </div>
     </div>
     
@@ -40,7 +41,8 @@ export default {
       code:'',
       inputText:'',
       outputText:'',
-      nameText: ''
+      nameText: '',
+      options: {fontSize: "16pt"}
     }
   },
   components: {
@@ -73,6 +75,9 @@ export default {
 }
 #nameArea{
     resize: none;
+    width: 10%;
+    height: 5%;
+    margin-left: -80%;
 }
 #inputArea{
   resize: none;
