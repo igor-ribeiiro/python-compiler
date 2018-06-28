@@ -1,15 +1,25 @@
-#myCode{
-   width: 50%;
-   height: 600px;
-   resize: none;
-   margin: 0% 0% -100px -50%;
-
+body {
+    padding-left: 50px;
 }
 
-textarea{
-  resize: none;
-  background-color: #7a8089
-}
-#editor{
-    text-align: center;
-}
+/*#myCode{*/
+    /*width: 50%;*/
+    /*height: 600px;*/
+    /*resize: none;*/
+    /*margin: 0% 0% -100px -50%;*/
+
+/*}*/
+/*#output_text{*/
+    /*width: 50%;*/
+    /*height: 600px;*/
+    /*resize: none;*/
+    /*margin: 0% 0% -100px -50%;*/
+/*}*/
+
+/*textarea{*/
+    /*resize: none;*/
+    /*background-color: #7a8089*/
+/*}*/
+/*#editor{*/
+    /*text-align: center;*/
+/*}*/

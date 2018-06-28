@@ -5,6 +5,10 @@ function getStatusOfCode() {
 
     httpPostAsync("/status", params, function(response){
         console.log(response);
+        const outputText = response["output"];
+        console.log(outputText);
+
+        printOutput(outputText);
     })
 }
 
