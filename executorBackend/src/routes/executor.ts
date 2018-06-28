@@ -1,60 +1,102 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 import {
   checkDependencies,
   installDependencies,
   isDependency
 } from "../lib/dependencies";
+import * as HttpStatus from "http-status-codes";
+
 import PythonExecutor from "../lib/executor";
 
-const executorRouter = Router();
-const executor = new PythonExecutor();
 
-executorRouter.post("/execute", (req, res) => {
-  const code = req.body.code;
+export default class ExecutorRouter {
+  public readonly router: Router = Router();
+  private executors: Map<string, PythonExecutor> = new Map();
 
-  if (typeof code !== "string")
-    return res.status(400).send();
-  else if (executor.isRunning)
-    return executor.updateCode(code)
-      ? res.send()
-      : res.status(403).send;
-  else {
-    executor.executeCode(code);
+  constructor() {
+    this.router.post("/execute", (req, res) => this.executeCode(req, res));
+    this.router.get("/stdout", (req, res) => this.sendStdout(req, res));
+    this.router.get("/code", (req, res) => this.sendCode(req, res));
+    this.router.get("/status", (req, res) => this.sendStatus(req, res));
+    this.router.post("/dependencies", (req, res) => this.installDependencies(req, res));
+  };
 
-    return res.status(201).send();
+  private executeCode(req: Request, res: Response): Response {
+    const code = req.body.code;
+    const id = req.body.id;
+
+    if (typeof code !== "string" || typeof id !== "string")
+      return res.status(HttpStatus.BAD_REQUEST).send();
+
+    const executor = this.getExecutor(id);
+
+    if (executor.isRunning)
+      return executor.updateCode(code)
+        ? res.send()
+        : res.status(HttpStatus.FORBIDDEN).send();
+    else
+      executor.executeCode(code);
+
+    return res.status(HttpStatus.CREATED).send();
   }
-});
 
-executorRouter.get("/stdout", (_, res) =>
-  res.send(executor.stdout)
-);
+  private sendStdout(req: Request, res: Response): Response {
+    const id = req.query.id;
 
-executorRouter.get("/code", (_, res) =>
-  res.send(executor.code)
-);
+    if (typeof id !== "string")
+      return res.status(HttpStatus.BAD_REQUEST).send();
 
-executorRouter.get("/status", (_, res) =>
-  res.send(executor.status)
-);
+    const stdout = this.getExecutor(id).stdout;
 
-executorRouter.post("/dependencies", (req, res) => {
-  const dependencies = req.body.dependencies;
+    return res.send(stdout);
+  }
 
-  if (!Array.isArray(dependencies) || !dependencies.every(isDependency))
-    return res.status(400).send();
+  private sendCode(req: Request, res: Response): Response {
+    const id = req.query.id;
 
-  return checkDependencies(dependencies)
-    .catch(ins => res.status(400).send(ins))
-    .then(ds => {
-      res.send();
-      return ds;
-    })
-    .then((ds) =>
-      Array.isArray(ds)
-        ? installDependencies(ds)
-        : {});
+    if (typeof id !== "string")
+      return res.status(HttpStatus.BAD_REQUEST).send();
 
-});
+    const code = this.getExecutor(id).code;
 
+    return res.send(code);
+  }
 
-export default executorRouter;
+  private sendStatus(req: Request, res: Response): Response {
+    const id = req.query.id;
+
+    if (typeof id !== "string")
+      return res.status(HttpStatus.BAD_REQUEST).send();
+
+    const status = this.getExecutor(id).code;
+
+    return res.send(status);
+  }
+
+  private installDependencies(req: Request, res: Response) {
+    const dependencies = req.body.dependencies;
+
+    if (!Array.isArray(dependencies) || !dependencies.every(isDependency))
+      return res.status(HttpStatus.BAD_REQUEST).send();
+
+    return checkDependencies(dependencies)
+      .catch(ins => res.status(HttpStatus.BAD_REQUEST).send(ins))
+      .then(ds => {
+        res.send({ dependencies: ds });
+        return ds;
+      })
+      .then((ds) =>
+        Array.isArray(ds)
+          ? installDependencies(ds)
+          : {});
+
+  }
+
+  private getExecutor(id: string): PythonExecutor {
+    if (!this.executors.has(id))
+      this.executors.set(id, new PythonExecutor());
+
+     // We can safely assume at this point that we have this id in the Map.
+     return this.executors.get(id)!;
+  }
+}

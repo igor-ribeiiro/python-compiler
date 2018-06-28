@@ -2,9 +2,10 @@ import * as compression from "compression";
 import * as express from "express";
 import * as morgan from "morgan";
 
-import executorRouter from "./routes/executor";
+import ExecutorRouter from "./routes/executor";
 
 const server = express();
+const execRouter = new ExecutorRouter();
 
 
 server
@@ -12,7 +13,7 @@ server
   .use(compression({ level: 8 }))
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
-  .use("/api", executorRouter);
+  .use("/api", execRouter.router);
 
 
 const PORT = 8080;
