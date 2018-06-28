@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content = "text/html; charset=utf-8">
-        <title>
-            Python Compiler
-        </title>
-        <link rel = "stylesheet" type = "text/css" href="style.css">
-        <link rel="shortcut icon" type="image/png" href="/img/python_icon.ico"/>
-    </head>
-    <body>
-        <div id="editor">
-            <div id="controls">
-                    <input type="file" id = "fileLoader">
-                    <input type="button" id="save" value="Save File" onclick="saveFile()">
+<head>
+    <meta http-equiv="Content-Type" content = "text/html; charset=utf-8">
+    <title>
+        Python Compiler
+    </title>
+    <link rel = "stylesheet" type = "text/css" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="/img/python_icon.ico"/>
 
-            </div>
-        <br />
-        <textarea id="myCode"></textarea>
-    </div>
-    <script type="text/javascript" src="editor.js"></script>
-    </body>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+    Username <input type="text" id="username" name="username" placeholder="username"/>
+    <button type="button" class="btn" onclick="requestExecutionOfCode()">Run code!</button>
+
+    <div id="editor">
+        <div id="controls">
+                <input type="file" id = "fileLoader">
+                <input type="button" id="save" value="Save File" onclick="saveFile()">
+
+        </div>
+    <br />
+    <textarea id="myCode"></textarea>
+</div>
+<script type="text/javascript" src="js/editor.js"></script>
+<script type="text/javascript" src="js/requester.js"></script>
+</body>
 </html>
