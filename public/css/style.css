@@ -19,6 +19,7 @@ textarea {
     height: 400px;
     overflow-x: auto;
     overflow-y: auto;
+    font-family: Consolas, "Times New Roman", Times, serif;
 }
 
 

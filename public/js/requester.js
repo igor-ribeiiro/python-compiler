@@ -1,33 +1,39 @@
+const waitTime = 100;
+let canBeExecutedAgain;
+
 function getStatusOfCode() {
     const username = document.getElementById("username").value;
     const params = {"username": username};
-    console.log("Requested get of status with username = " + username);
 
     httpPostAsync("/status", params, function(response) {
         console.log(response);
+        printStatus(response.status);
+
         if(response.status !== 'ok') {
-            printStatus(response.status);
-            setTimeout(function() {
-                getStatusOfCode();
-            }, 1000);
+            if(canBeExecutedAgain) {
+                setTimeout(function () {
+                    getStatusOfCode();
+                }, waitTime);
+            }
         }
-        else {
-            printStatus(response.status);
+        else
             printOutput(response.output);
-        }
     })
 }
 
 //Makes a request to execute the code
 function requestExecutionOfCode() {
+    canBeExecutedAgain = false;
     const code = document.getElementById("myCode").value;
     const username = document.getElementById("username").value;
     const params = {"username": username, "code": code};
     console.log("Requested execution of code with username = " + username + " and code = " + code);
 
     httpPostAsync("/code", params, function(response) {
-        console.log(response);
-        getStatusOfCode()
+        setTimeout(function () {
+            canBeExecutedAgain = true;
+            getStatusOfCode()
+        }, waitTime*1.1);
     })
 }
 

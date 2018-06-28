@@ -1,8 +1,8 @@
 {
   "sessions": {
     "": {
-      "Status": "Running",
-      "output": "EMPTY"
+      "output": "This is the output from the server",
+      "status": "ok"
     },
     "AAA": {
       "output": "This is the output from the server",
@@ -12,9 +12,13 @@
       "Status": "Running",
       "output": "EMPTY"
     },
+    "a": {
+      "output": "This is the output from the server",
+      "status": "ok"
+    },
     "aa": {
-      "Status": "ok",
-      "output": "This is the output from the server"
+      "output": "This is the output from the server",
+      "status": "ok"
     },
     "aaa": {
       "output": "This is the output from the server",
@@ -25,8 +29,8 @@
       "status": "ok"
     },
     "aaaaa": {
-      "Status": "ok",
-      "output": "This is the output from the server"
+      "output": "This is the output from the server",
+      "status": "ok"
     },
     "igor": {
       "Status": "ok",
