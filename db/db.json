@@ -1,12 +1,20 @@
 {
   "sessions": {
+    "": {
+      "Status": "ok",
+      "output": "This is the output from the server"
+    },
     "aaa": {
       "Status": "ok",
       "output": "This is the output from the server"
     },
     "aaaa": {
-      "Status": "Running",
-      "output": "EMPTY"
+      "Status": "ok",
+      "output": "This is the output from the server"
+    },
+    "aaaaa": {
+      "Status": "ok",
+      "output": "This is the output from the server"
     },
     "igor": {
       "Status": "ok",

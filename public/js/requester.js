@@ -3,11 +3,9 @@ function getStatusOfCode() {
     const params = {"username": username};
     console.log("Requested get of status with username = " + username);
 
-    httpPostAsync("/status", params, function(response){
+    httpPostAsync("/status", params, function(response) {
         console.log(response);
-        const outputText = response["output"];
-        console.log(outputText);
-
+        const outputText = response.output;
         printOutput(outputText);
     })
 }
@@ -35,7 +33,7 @@ function httpPostAsync(theUrl, params, callback) {
 
     http.onreadystatechange = function() {
         if (http.readyState === 4 && http.status === 200)
-            callback(http.responseText);
+            callback(JSON.parse(http.responseText));
     };
 }
 
@@ -45,9 +43,8 @@ function httpGetAsync(theUrl, callback) {
 
     http.send(null);
 
-
     http.onreadystatechange = function() {
         if (http.readyState === 4 && http.status === 200)
-            callback(http.responseText);
+            callback(JSON.parse(http.responseText));
     };
 }
