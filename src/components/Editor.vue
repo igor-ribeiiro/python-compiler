@@ -89,7 +89,7 @@
           body: JSON.stringify({ "username": this.sessionId, "code": this.code })
         });
 
-        setTimeout(async () => this.fetchOutput(), 1000);
+        setTimeout(() => this.fetchOutput(), 1000);
       },
       async fetchOutput() {
         const body = await (await fetch("/status", {
@@ -103,7 +103,7 @@
         this.output = body.output;
         this.status = body.status;
 
-        setTimeout(async () => this.fetchOutput(), 200);
+        setTimeout(() => this.fetchOutput(), 200);
       },
       showTutorial() {
         this.$modal.show("tutorial");
