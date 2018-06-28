@@ -12,7 +12,7 @@ from handlers.status_handler import StatusHandler
 from tornado.options import define
 define("port", default=8888, help="run on the given port", type=int)
 
-public_root = os.path.join(os.path.dirname(__file__), 'public')
+public_root = os.path.join(os.path.dirname(__file__), 'dist')
 
 
 # application settings and handle mapping info

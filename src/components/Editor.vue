@@ -1,96 +1,134 @@
 <template>
   <div id="editor">
-    <div id="container">
-        <div id= "scriptName">
-            
-            <input v-model="nameText" is="textarea" id = "nameArea" readonly = true/>
-            <b-button id = "buttonChangeName" :size = "'sm'" :variant= "'primary'">
-                change
-            </b-button>
+    <nav class="blue blue-darken-3">
+      <div class="nav-wrapper">
+        <a href="" class="brand-logo" style="margin-left: 16px;">
+           PyBin
+        </a>
+      </div>
+    </nav>
+
+    <tutorial/>
+
+    <div class="session">
+      <div class="tool row">
+        <div class="col s4">
+          <div class="input-field">
+            <input type="text" class="validate" id="session" v-model="sessionId">
+            <label for="session">Session</label>
+          </div>
         </div>
-      <div id ="editor">
-        <b-button id = "buttonSave" :size = "'sm'" :variant= "'primary'">
-            Save
-        </b-button>
-        <b-button id = "buttonRun" :size = "'sm'" :variant= "'primary'">
-                run
-        </b-button>
-        <editor id = "aceEditor" v-model="code" @init="editorInit" lang="python" theme="chrome" width="500" height="200" :options="options"></editor>
+
+        <div class="col s4 offset-s1">
+          <div class="status valign-wrapper">
+            <h6>Current status: {{ status }}</h6>
+          </div>
+        </div>
+
+        <div class="col s2 offset-s1 l-buttons">
+          <a class="left btn-large btn-flat waves-effect waves-purple" @click="showTutorial">Help</a>
+          <a class="right btn-large waves-effect waves-light deep-purple" @click="sendCode">Run!</a>
+        </div>
       </div>
     </div>
-    
-    <div id = "outputArea">
-      <input v-model="outputText" is="textarea" id = "outputArea" readonly = true/>
+    <div class="row">
+      <div class="col s6">
+        <editor id="pythonEditor" v-model="code"
+                @init="editorInit" lang="python" theme="chrome"
+                height="600px" :options="options"/>
+      </div>
+      <div class="col s6">
+        <editor id="output" v-model="output"
+                @init="outputInit" lang="text" theme="chrome"
+                height="600px" :options="options"/>
+      </div>
     </div>
-    <div id = "inputArea">
-      <input v-model="inputText" is="textarea" id = "inputArea"/>
-      <b-button :size = "'sm'" :variant= "'primary'">
-                enter
-      </b-button>
-    </div>
-    
-    
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data(){
-    return{
-      code:'',
-      inputText:'',
-      outputText:'',
-      nameText: '',
-      options: {fontSize: "16pt"}
-    }
-  },
-  components: {
-        editor: require('vue2-ace-editor')
-        
+  import Tutorial from "./Tutorial.vue";
+
+  export default {
+    name: 'app',
+    data() {
+      return {
+        code: '# Place your code here\nprint("Hello World!")',
+        output: "Your output text goes here",
+        sessionId: '',
+        options: {
+          fontSize: "12pt",
+          width: .5 * window.width,
+        },
+        status: "waiting"
+      }
     },
-  methods: {
-      editorInit: function () {
-          require('brace/ext/language_tools') //language extension prerequsite...
-          require('brace/mode/html')                
-          require('brace/mode/python')    //language
-          require('brace/mode/less')
-          require('brace/theme/chrome')
-          require('brace/snippets/python') //snippet
-        }
-    }    
-}
+    components: {
+      editor: require('vue2-ace-editor'),
+      Tutorial
+    },
+    methods: {
+      editorInit() {
+        require('brace/ext/language_tools'); //language extension prerequsite...
+        require('brace/mode/python');    //language
+        require('brace/theme/chrome');
+        require('brace/snippets/python'); //snippet
+      },
+      outputInit() {
+        require('brace/ext/language_tools'); //language extension prerequsite...
+        require('brace/mode/text');    //language
+        require('brace/theme/chrome');
+      },
+      async sendCode() {
+        await fetch("/code", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ "username": this.sessionId, "code": this.code })
+        });
+      },
+      async fetchOutput() {
+        const body = await (await fetch("/status", {
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ "username": this.sessionId })
+        })).json();
+
+        this.output = body.output;
+
+        setTimeout(async () => this.fetchOutput(), 200);
+      },
+      showTutorial() {
+        this.$modal.show("tutorial");
+      }
+    }
+  }
 </script>
 <style>
-/*#aceEditor{
-  fontSize: 50
-}*/
-#editor {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-#nameArea{
-    resize: none;
-    width: 10%;
-    height: 5%;
-    margin-left: -80%;
-}
-#inputArea{
-  resize: none;
-  left: 100px;
-}
-#outputArea{
-  resize: none;
-}
-#buttonRun{
-  margin-left: -98%;
-}
-#buttonSave{
-  margin-left: 0%;
-}
+  .session {
+    margin-top: 32px;
+  }
 
+  .btn-flat:hover {
+    background-color: rgba(103, 58, 183, 0.7);
+  }
+
+  .tool {
+    margin: 8px 32px;
+  }
+  .left {
+    margin-right: 8px;
+  }
+
+  .right {
+    margin-left: 8px;
+  }
+
+  .status, l-buttons {
+    height: 84px;
+  }
 </style>

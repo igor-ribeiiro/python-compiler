@@ -1,66 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content = "text/html; charset=utf-8">
-    <!--<title>
-        Python Compiler
-    </title>
-    <link rel="stylesheet" type ="text/css" href="css/style.css">
-    <link rel="shortcut icon" type="image/png" href="img/python_icon.ico"/>-->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>
+    Python Compiler
+  </title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="shortcut icon" type="image/png" href="img/python_icon.ico"/>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
 </head>
 <body>
-    <div class="row" style="text-align: center;">
-        <h1 style="font-weight: bold; display:inline-block">Python Compiler</h1>
-        <img src="/img/python_icon.jpeg" id="pythonMainIcon"/>
-    </div>
+<div id="app"></div>
+<!-- built files will be auto injected -->
 
-    <div class="row" style="padding-left: 40px">
-        <div class="col-md-8">
-            <span style="font-weight: bold; font-size: 18px">Username: </span>
-            <input type="text" id="username" name="username" placeholder="username"/>
 
-            <button type="button" class="btn" onclick="requestExecutionOfCodeWithTextArea()">Run code!</button>
-        </div>
-        <div class="col-md-4">
-            <span style="font-weight: bold; font-size: 16px">Status: </span>
-            <span style="font-size: 16px" id="currentStatus">None</span>
-        </div>
-    </div>
-    <!--<div id="editor">-->
-        <!--<div id="controls">-->
-                <!--<input type="file" id = "fileLoader">-->
-                <!--<input type="button" id="save" value="Save File" onclick="saveFile()">-->
-
-        <!--</div>-->
-        <!--<br />-->
-        <!--<textarea id="myCode"></textarea>-->
-    <!--</div>-->
-
-    <!--<div class="row" id="textAreas">
-        <div class="col-md-6">
-            <h3 style="font-weight: bold">Your code</h3>
-            <textarea id="myCode"></textarea>
-        </div>
-        <div class="col-md-6">
-            <h3 style="font-weight: bold">Output</h3>
-            <textarea readonly id="output_text"></textarea>
-        </div>
-    </div>-->
-
-    <script type="text/javascript" src="js/output_handler.js"></script>
-    <!--<script type="text/javascript" src="js/editor.js"></script>-->
-    <script type="text/javascript" src="js/requester.js"></script>
-    
-    <!--pedro colocou-->
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-   
-
-    <script src = "ace/ace.js"></script>
-    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 </body>
 </html>
